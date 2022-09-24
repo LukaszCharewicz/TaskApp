@@ -80,10 +80,10 @@ namespace TaskApp.ViewModels
 		public ICommand SubmitCommand { get; set; }
 		public ICommand CancelCommand { get; set; }
 
-		public CreateTaskViewModel(TaskManager taskManager)
+		public CreateTaskViewModel(TaskManager taskManager, Stores.NavigationStore navigationStore, Func<TaskListViewModel> createTaskListViewModel)
 		{
 			SubmitCommand = new CreateTaskCommand(this, taskManager);
-			CancelCommand = new CancelCommand();
+			CancelCommand = new NavigationCommand(navigationStore, createTaskListViewModel);
 		}
 	}
 }

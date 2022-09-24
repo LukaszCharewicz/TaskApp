@@ -28,6 +28,7 @@ namespace TaskApp.Commands
 			try
 			{
 				taskManager.CreateTask(taskToDo);
+
 			}
 			catch (Exception)
 			{

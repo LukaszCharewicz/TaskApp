@@ -17,11 +17,11 @@ namespace TaskApp.ViewModels
 		public IEnumerable<TaskToDoViewModel> TasksToDo => _tasksToDo;
 		public ICommand NavigateToCreateTaskView { get; }
 
-		public TaskListViewModel(NavigationStore navigationStore)
+		public TaskListViewModel(NavigationStore navigationStore, Func<CreateTaskViewModel> createCreateTaskView)
 		{
 			_tasksToDo = new ObservableCollection<TaskToDoViewModel>();
 
-			NavigateToCreateTaskView = new NavigationCommand(navigationStore);
+			NavigateToCreateTaskView = new NavigationCommand(navigationStore, createCreateTaskView);
 		}
 	}
 }
