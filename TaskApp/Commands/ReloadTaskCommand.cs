@@ -14,10 +14,6 @@ namespace TaskApp.Commands
 		private readonly TaskManager _taskManager;
 		private readonly TaskListViewModel _taskListViewModel;
 
-		public ReloadTaskCommand()
-		{
-		}
-
 		public ReloadTaskCommand(TaskManager taskManager, TaskListViewModel taskListViewModel)
 		{
 			_taskManager = taskManager;
@@ -29,7 +25,7 @@ namespace TaskApp.Commands
 			try
 			{
 				IEnumerable<TaskToDo> tasks = await _taskManager.GetAllTasks();
-				_taskListViewModel.UpdateTasks
+				_taskListViewModel.UpdateTasks(tasks);
 			}
 			catch (Exception)
 			{

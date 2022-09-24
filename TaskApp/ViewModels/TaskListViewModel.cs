@@ -23,7 +23,6 @@ namespace TaskApp.ViewModels
 
 		public TaskListViewModel(TaskManager taskManager, NavigationService createTaskNavigationService)
 		{
-			_taskManager = taskManager;
 			_tasksToDo = new ObservableCollection<TaskToDoViewModel>();
 			ReloadTaskCommand = new ReloadTaskCommand(taskManager, this);
 			NavigateToCreateTaskView = new NavigationCommand(createTaskNavigationService);

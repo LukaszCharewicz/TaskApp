@@ -61,7 +61,7 @@ namespace TaskApp
 		}
 		private TaskListViewModel createTaskListViewModel()
 		{
-			return new TaskListViewModel(this.taskManager, new Services.NavigationService(navigationStore, createCreateTaskListViewModel));
+			return TaskListViewModel.LoadViewModel(this.taskManager, new Services.NavigationService(navigationStore, createCreateTaskListViewModel));
 		}
 
 	}
