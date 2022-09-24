@@ -4,13 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TaskApp.Models;
 using TaskApp.Services;
 using TaskApp.ViewModels;
 
 namespace TaskApp.Commands
 {
-	internal class CreateTaskCommand : CommandBase
+	internal class CreateTaskCommand : AsyncCommandBase
 	{
 		private readonly CreateTaskViewModel createTaskViewModel;
 		private readonly TaskManager taskManager;
@@ -26,18 +27,17 @@ namespace TaskApp.Commands
 		}
 
 
-		public override void Execute(object? parameter)
+		public async override Task ExecuteAsync(object parameter)
 		{
 			TaskToDo taskToDo = new TaskToDo(createTaskViewModel.Description, DateTime.Now, createTaskViewModel.Deadline, createTaskViewModel.IsImportant);
 			try
 			{
-				taskManager.CreateTask(taskToDo);
+				await taskManager.CreateTask(taskToDo);
 				this.taskListViewNavigationService.Navigate();
 			}
 			catch (Exception)
 			{
-
-				throw;
+				MessageBox.Show("Cannot create task.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
@@ -50,7 +50,7 @@ namespace TaskApp.Commands
 		{
 			if (e.PropertyName == nameof(CreateTaskViewModel.Description))
 			{
-				OnCanExecuredChanged();
+				OnCanExecutedChanged();
 			}
 		}
 	}

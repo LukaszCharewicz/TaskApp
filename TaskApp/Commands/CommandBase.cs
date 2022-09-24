@@ -18,7 +18,7 @@ namespace TaskApp.Commands
 
 		public abstract void Execute(object? parameter);
 
-		protected void OnCanExecuredChanged()
+		protected void OnCanExecutedChanged()
 		{
 			CanExecuteChanged?.Invoke(this, new EventArgs());
 		}
