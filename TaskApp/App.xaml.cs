@@ -27,7 +27,7 @@ namespace TaskApp
 		}
 		protected override void OnStartup(StartupEventArgs e)
 		{
-			this.navigationStore.CurrentViewModel = new TaskListViewModel();
+			this.navigationStore.CurrentViewModel = new TaskListViewModel(this.navigationStore);
 
 			MainWindow = new MainWindow()
 			{

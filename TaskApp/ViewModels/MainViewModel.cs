@@ -19,6 +19,12 @@ namespace TaskApp.ViewModels
 		public MainViewModel(NavigationStore navigationStore)
 		{
 			this.navigationStore = navigationStore;
+			this.navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+		}
+
+		private void OnCurrentViewModelChanged()
+		{
+			OnPropertyChanged(nameof(CurrentViewModel));
 		}
 	}
 }
