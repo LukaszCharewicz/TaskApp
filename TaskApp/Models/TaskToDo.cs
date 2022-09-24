@@ -14,7 +14,7 @@ namespace TaskApp.Models
 		public DateTime Deadline { get; }
 		public bool IsImportant { get; }
 
-		public TaskToDo(string description, DateTime creationTime, DateTime deadline, TaskState state, bool isImportant)
+		public TaskToDo(string description, DateTime creationTime, DateTime deadline, bool isImportant)
 		{
 			Description = description;
 			Deadline = deadline;

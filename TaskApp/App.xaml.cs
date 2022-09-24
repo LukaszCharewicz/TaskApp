@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TaskApp.DBContext;
 using TaskApp.Models;
 using TaskApp.Stores;
 using TaskApp.ViewModels;
@@ -27,6 +29,12 @@ namespace TaskApp
 		}
 		protected override void OnStartup(StartupEventArgs e)
 		{
+			DbContextOptions options = new DbContextOptionsBuilder().UseSqlite("Data Source=TaskApp.db").Options;
+			using (TaskDbContext dbContext = new TaskDbContext(options))
+			{
+				dbContext.Database.Migrate();
+			}
+
 
 			this.navigationStore.CurrentViewModel = createTaskListViewModel();
 
