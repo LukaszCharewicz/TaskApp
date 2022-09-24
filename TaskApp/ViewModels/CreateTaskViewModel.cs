@@ -7,6 +7,7 @@ using System.Windows.Input;
 using TaskApp.Models;
 using TaskApp.Enums;
 using TaskApp.Commands;
+using TaskApp.Services;
 
 namespace TaskApp.ViewModels
 {
@@ -80,10 +81,10 @@ namespace TaskApp.ViewModels
 		public ICommand SubmitCommand { get; set; }
 		public ICommand CancelCommand { get; set; }
 
-		public CreateTaskViewModel(TaskManager taskManager, Stores.NavigationStore navigationStore, Func<TaskListViewModel> createTaskListViewModel)
+		public CreateTaskViewModel(TaskManager taskManager, NavigationService taskListViewNavigationService)
 		{
-			SubmitCommand = new CreateTaskCommand(this, taskManager);
-			CancelCommand = new NavigationCommand(navigationStore, createTaskListViewModel);
+			SubmitCommand = new CreateTaskCommand(this, taskManager, taskListViewNavigationService);
+			CancelCommand = new NavigationCommand(taskListViewNavigationService);
 		}
 	}
 }

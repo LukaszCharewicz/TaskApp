@@ -6,23 +6,22 @@ using System.Threading.Tasks;
 using TaskApp.Stores;
 using TaskApp.ViewModels;
 using TaskApp.Models;
+using TaskApp.Services;
 
 namespace TaskApp.Commands
 {
 	internal class NavigationCommand : CommandBase
 	{
-		private readonly NavigationStore navigationStore;
-		private readonly Func<ViewModelBase> createViewModel;
+		private readonly NavigationService navigationService;
 
-		public NavigationCommand(NavigationStore navigationStore, Func<ViewModelBase> createViewModel)
+		public NavigationCommand(NavigationService navigationService)
 		{
-			this.navigationStore = navigationStore;
-			this.createViewModel = createViewModel;
+			this.navigationService = navigationService;
 		}
 
 		public override void Execute(object? parameter)
 		{
-			this.navigationStore.CurrentViewModel = this.createViewModel();
+			this.navigationService.Navigate();
 		}
 	}
 }

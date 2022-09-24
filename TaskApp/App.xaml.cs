@@ -41,11 +41,11 @@ namespace TaskApp
 
 		private CreateTaskViewModel createCreateTaskListViewModel()
 		{
-			return new CreateTaskViewModel(this.taskManager, this.navigationStore, createTaskListViewModel);
+			return new CreateTaskViewModel(this.taskManager, new Services.NavigationService(this.navigationStore, createTaskListViewModel));
 		}
 		private TaskListViewModel createTaskListViewModel()
 		{
-			return new TaskListViewModel(navigationStore, createCreateTaskListViewModel);
+			return new TaskListViewModel(new Services.NavigationService(navigationStore, createCreateTaskListViewModel));
 		}
 
 	}

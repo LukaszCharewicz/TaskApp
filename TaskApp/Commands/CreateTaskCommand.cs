@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskApp.Models;
+using TaskApp.Services;
 using TaskApp.ViewModels;
 
 namespace TaskApp.Commands
@@ -13,12 +14,15 @@ namespace TaskApp.Commands
 	{
 		private readonly CreateTaskViewModel createTaskViewModel;
 		private readonly TaskManager taskManager;
+		private readonly NavigationService taskListViewNavigationService;
 
-		public CreateTaskCommand(CreateTaskViewModel createTaskViewModel, TaskManager taskManager)
+		public CreateTaskCommand(CreateTaskViewModel createTaskViewModel, TaskManager taskManager, NavigationService taskListViewNavigationService)
 		{
 			this.taskManager = taskManager;
 			this.createTaskViewModel = createTaskViewModel;
 			this.createTaskViewModel.PropertyChanged += OnViewModelPropertyChanged;
+			this.taskListViewNavigationService = taskListViewNavigationService;
+
 		}
 
 
@@ -28,7 +32,7 @@ namespace TaskApp.Commands
 			try
 			{
 				taskManager.CreateTask(taskToDo);
-
+				this.taskListViewNavigationService.Navigate();
 			}
 			catch (Exception)
 			{
