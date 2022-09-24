@@ -5,8 +5,65 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskApp.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-            
-    </Grid>
+		<Grid HorizontalAlignment="Center">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+			<Border Style="{StaticResource AddBorder}">
+				<TextBlock
+				Grid.Row="0"
+				Style="{StaticResource Title}"
+				Text="Create Task"
+				Margin="0 25"
+				TextAlignment="Center"
+				/>
+			</Border>
+
+			<Grid Grid.Row="1" Margin="0 20 0 0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition Height="auto"/>
+				</Grid.RowDefinitions>
+				<TextBlock Style="{StaticResource Subtitle}"  Grid.Row="0" Text="Task Description:" Margin="0 10"/>
+				<TextBox Grid.Row="1" Width="450" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
+			</Grid>
+			<Grid Grid.Row="2" Margin="0 20 0 0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition Height="auto"/>
+				</Grid.RowDefinitions>
+				<TextBlock Style="{StaticResource Subtitle}" Grid.Row="0" Text="Deadline:" Margin="0 10"/>
+
+				<DatePicker Grid.Row="1" SelectedDateFormat="Short" x:Name="gDPickDate" SelectedDate="{Binding Deadline, UpdateSourceTrigger=PropertyChanged}"
+                    CalendarStyle="{StaticResource resizedCalendarItem}"
+                    />
+			</Grid>
+			<Grid Grid.Row="3" Margin="0 20 0 0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition Height="auto"/>
+				</Grid.RowDefinitions>
+				<TextBlock Style="{StaticResource Subtitle}" Grid.Row="0" Text="Set as important:" Margin="0 10"/>
+				<CheckBox Grid.Row="1" IsChecked="{Binding IsImportant, UpdateSourceTrigger=PropertyChanged}">
+					<CheckBox.LayoutTransform>
+						<ScaleTransform ScaleX="2" ScaleY="2" />
+					</CheckBox.LayoutTransform>
+				</CheckBox>
+			</Grid>
+			<Grid Grid.Row="4" HorizontalAlignment="Center" Margin="0 25">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="175"/>
+					<ColumnDefinition Width="175"/>
+				</Grid.ColumnDefinitions>
+				<Button Grid.Column="0" Content="Submit" Command="{Binding SubmitCommand}"/>
+				<Button Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}"/>
+			</Grid>
+		</Grid>
+	</Grid>
 </UserControl>

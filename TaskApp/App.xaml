@@ -4,6 +4,50 @@
              xmlns:local="clr-namespace:TaskApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
-    </Application.Resources>
+		<Style TargetType="Button">
+			<Setter Property="Margin" Value="10 10 10 10" />
+			<Setter Property="FontSize" Value="30"/>
+			<Setter Property="Padding" Value="5"/>
+		</Style>
+
+		<Style x:Key="Title" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="40" />
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+		</Style>
+
+		<Style x:Key="Subtitle" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="30"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+		</Style>
+		<Style TargetType="TextBox">
+			<Setter Property="FontSize" Value="20"/>
+		</Style>
+		<Style TargetType="DatePicker">
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="20" />
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+		<Style x:Key="resizedCalendarItem" TargetType="{x:Type Calendar}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Calendar}">
+						<Viewbox Height="300"
+                        Width="400">
+							<CalendarItem x:Name="PART_CalendarItem"
+                                BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}" />
+						</Viewbox>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style TargetType="CheckBox">
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="AddBorder" TargetType="{x:Type Border}">
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="BorderBrush" Value="Black" />
+		</Style>
+	</Application.Resources>
 </Application>
