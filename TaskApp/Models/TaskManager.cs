@@ -18,5 +18,10 @@ namespace TaskApp.Models
 		{
 			_taskList.Add(taskToDo);
 		}
+
+		public List<TaskToDo> GetTasks()
+		{
+			return _taskList;
+		}
 	}
 }
