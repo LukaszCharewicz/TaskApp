@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +9,20 @@ namespace TaskApp.Models
 {
 	internal class TaskManager
 	{
-		private readonly List<TaskToDo> _taskList;
-		public TaskManager()
+		private readonly TaskList _taskList;
+		public TaskManager(TaskList taskList)
 		{
-			_taskList = new List<TaskToDo>();
+			_taskList = taskList;
 		}
 
-		public void CreateTask(TaskToDo taskToDo)
+		public async Task CreateTask(TaskToDo taskToDo)
 		{
-			_taskList.Add(taskToDo);
+			await _taskList.AddTask(taskToDo);
 		}
 
-		public List<TaskToDo> GetTasks()
+		public async Task<IEnumerable<TaskToDo>> GetAllTasks()
 		{
-			return _taskList;
+			return await _taskList.GetAllTasks();
 		}
 	}
 }

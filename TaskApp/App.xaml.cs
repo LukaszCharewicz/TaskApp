@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using TaskApp.DBContext;
 using TaskApp.Models;
+using TaskApp.Services.TaskCreators;
+using TaskApp.Services.TaskProviders;
 using TaskApp.Stores;
 using TaskApp.ViewModels;
 using TaskApp.Views;
@@ -21,16 +23,21 @@ namespace TaskApp
 	{
 		private readonly TaskManager taskManager;
 		private readonly NavigationStore navigationStore;
+		private readonly TaskDbContextFactory _taskDbContextFactory;
+		private const string CONNECTION_STRING = "Data Source=TaskApp.db";
 
 		public App()
 		{
-			taskManager = new TaskManager();
+			_taskDbContextFactory = new TaskDbContextFactory(CONNECTION_STRING);
+			Services.TaskCreators.ITaskCreator taskCreator = new DatabaseTaskCreator(_taskDbContextFactory);
+			Services.TaskProviders.ITaskProvider taskProvider = new DatabaseTaskProvider(_taskDbContextFactory);
+			TaskList taskList = new TaskList(taskProvider, taskCreator);
+			taskManager = new TaskManager(taskList);
 			navigationStore = new NavigationStore();
 		}
 		protected override void OnStartup(StartupEventArgs e)
 		{
-			DbContextOptions options = new DbContextOptionsBuilder().UseSqlite("Data Source=TaskApp.db").Options;
-			using (TaskDbContext dbContext = new TaskDbContext(options))
+			using (TaskDbContext dbContext = _taskDbContextFactory.CreateDbContext())
 			{
 				dbContext.Database.Migrate();
 			}

@@ -10,9 +10,9 @@ namespace TaskApp.DBContext
 {
 	internal class TaskDbContextFactory
 	{
-		private readonly Action<SqliteDbContextOptionsBuilder>? _connectionString;
+		private readonly string _connectionString;
 
-		public TaskDbContextFactory(Action<SqliteDbContextOptionsBuilder>? connectionString)
+		public TaskDbContextFactory(string connectionString)
 		{
 			_connectionString = connectionString;
 		}

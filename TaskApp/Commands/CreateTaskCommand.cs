@@ -28,7 +28,7 @@ namespace TaskApp.Commands
 
 		public override void Execute(object? parameter)
 		{
-			TaskToDo taskToDo = new TaskToDo(createTaskViewModel.Description, DateTime.Now, createTaskViewModel.Deadline, createTaskViewModel.TaskState, createTaskViewModel.IsImportant);
+			TaskToDo taskToDo = new TaskToDo(createTaskViewModel.Description, DateTime.Now, createTaskViewModel.Deadline, createTaskViewModel.IsImportant);
 			try
 			{
 				taskManager.CreateTask(taskToDo);
