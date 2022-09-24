@@ -4,17 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskApp.Models;
+using TaskApp.Stores;
 using TaskApp.ViewModels;
 
 namespace TaskApp.ViewModels
 {
 	internal class MainViewModel : ViewModelBase
 	{
-		public ViewModelBase CurrentViewModel { get; }
+		private readonly NavigationStore navigationStore;
 
-		public MainViewModel(TaskManager taskManager)
+		public ViewModelBase CurrentViewModel => this.navigationStore.CurrentViewModel;
+
+
+		public MainViewModel(NavigationStore navigationStore)
 		{
-			CurrentViewModel = new CreateTaskViewModel(taskManager);
+			this.navigationStore = navigationStore;
 		}
 	}
 }

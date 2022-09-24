@@ -4,9 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskApp" xmlns:views="clr-namespace:TaskApp.Views"
+		xmlns:vms="clr-namespace:TaskApp.ViewModels"
 		mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="800">
     <Grid>
-		<views:CreateTaskView DataContext="{Binding CurrentViewModel}"/>
+		<Grid.Resources>
+			<DataTemplate 
+				DataType="{x:Type vms:CreateTaskViewModel}" >
+				<views:CreateTaskView />
+			</DataTemplate>
+			<DataTemplate 
+				DataType="{x:Type vms:TaskListViewModel}" >
+				<views:TaskListView />
+			</DataTemplate>
+		</Grid.Resources>
+		<ContentControl Content="{Binding CurrentViewModel}"/>
 	</Grid>
 </Window>

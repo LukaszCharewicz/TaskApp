@@ -6,7 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using TaskApp.Models;
+using TaskApp.Stores;
 using TaskApp.ViewModels;
+using TaskApp.Views;
 
 namespace TaskApp
 {
@@ -16,16 +18,20 @@ namespace TaskApp
 	public partial class App : Application
 	{
 		private readonly TaskManager taskManager;
+		private readonly NavigationStore navigationStore;
 
 		public App()
 		{
 			taskManager = new TaskManager();
+			navigationStore = new NavigationStore();
 		}
 		protected override void OnStartup(StartupEventArgs e)
 		{
+			this.navigationStore.CurrentViewModel = new TaskListViewModel();
+
 			MainWindow = new MainWindow()
 			{
-				DataContext = new MainViewModel(taskManager)
+				DataContext = new MainViewModel(navigationStore)
 			};
 
 			MainWindow.Show();
