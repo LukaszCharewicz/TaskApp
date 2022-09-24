@@ -11,6 +11,10 @@ namespace TaskApp.DBContext
 {
 	internal class TaskDbContext : DbContext
 	{
+		public TaskDbContext(DbContextOptions options) : base(options)
+		{
+		}
+
 		public DbSet<TaskDTO> Tasks { get; set; }
 	}
 }

@@ -16,7 +16,6 @@ namespace TaskApp.ViewModels
 		public string Description => _task.Description;
 		public string CreationTime => _task.CreationTime.ToString("g");
 		public string Deadline => _task.Deadline.ToString("d");
-		public TaskState State => _task.State;
 		public bool IsImportant => _task.IsImportant;
 
 		public TaskToDoViewModel(TaskToDo task)
