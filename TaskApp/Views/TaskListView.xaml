@@ -26,7 +26,8 @@
 			<Button
                 Grid.Column="1"
                 Margin="10 0 0 0"
-                Content="Create Task" />
+                Content="Create Task" 
+				Command="{Binding NavigateToCreateTaskView}"/>
 		</Grid>
 
 		<Grid Grid.Row="1">

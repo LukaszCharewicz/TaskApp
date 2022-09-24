@@ -83,6 +83,7 @@ namespace TaskApp.ViewModels
 		public CreateTaskViewModel(TaskManager taskManager)
 		{
 			SubmitCommand = new CreateTaskCommand(this, taskManager);
+			CancelCommand = new CancelCommand();
 		}
 	}
 }
