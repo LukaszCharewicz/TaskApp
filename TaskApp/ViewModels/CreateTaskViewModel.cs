@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TaskApp.Models;
 using TaskApp.Enums;
+using TaskApp.Commands;
 
 namespace TaskApp.ViewModels
 {
@@ -76,6 +77,12 @@ namespace TaskApp.ViewModels
 				OnPropertyChanged(nameof(IsImportant));
 			}
 		}
+		public ICommand SubmitCommand { get; set; }
+		public ICommand CancelCommand { get; set; }
 
+		public CreateTaskViewModel(TaskManager taskManager)
+		{
+			SubmitCommand = new CreateTaskCommand(this, taskManager);
+		}
 	}
 }
