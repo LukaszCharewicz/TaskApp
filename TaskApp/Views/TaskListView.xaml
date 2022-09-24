@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskApp.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto"/>
@@ -20,18 +20,17 @@
 
 			<TextBlock
                 Grid.Column="0"
-                Text="Tasks list" 
+                Text="Tasks list:" 
 				Style="{StaticResource Title}"/>
 
 			<Button
                 Grid.Column="1"
-                Margin="10 0 0 0"
                 Content="Create Task" 
 				Command="{Binding NavigateToCreateTaskView}"/>
 		</Grid>
 
 		<Grid Grid.Row="1">
-			<ListView Margin="0 30 0 0"
+			<ListView Margin="20 30 20 0"
 					  ItemsSource="{Binding TasksToDo}">
 				<ListView.ItemContainerStyle>
 					<Style TargetType="ListViewItem">
@@ -40,15 +39,15 @@
 				</ListView.ItemContainerStyle>
 				<ListView.View>
 					<GridView>
-						<GridViewColumn Header="Task">
+						<GridViewColumn Header="Task" Width="500">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBlock Text="{Binding Description}" HorizontalAlignment="Center"/>
+									<TextBlock Text="{Binding Description}" HorizontalAlignment="Center" />
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
 
-						<GridViewColumn Header="Created">
+						<GridViewColumn Header="Created" Width="auto">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBlock Text="{Binding CreationTime}" HorizontalAlignment="Center"/>
@@ -56,10 +55,17 @@
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
 
-						<GridViewColumn Header="Deadline">
+						<GridViewColumn Header="Deadline" Width="auto">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBlock Text="{Binding Deadline}" HorizontalAlignment="Center"/>
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+						<GridViewColumn Header="Important" Width="auto">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding IsImportant}" HorizontalAlignment="Center"/>
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>

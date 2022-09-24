@@ -86,5 +86,6 @@ namespace TaskApp.ViewModels
 			SubmitCommand = new CreateTaskCommand(this, taskManager, taskListViewNavigationService);
 			CancelCommand = new NavigationCommand(taskListViewNavigationService);
 		}
+
 	}
 }
