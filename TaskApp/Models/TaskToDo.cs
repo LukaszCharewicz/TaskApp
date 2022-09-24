@@ -12,14 +12,12 @@ namespace TaskApp.Models
 		public string Description { get; }
 		public DateTime CreationTime { get; }
 		public DateTime Deadline { get; }
-		public TaskState State { get; }
 		public bool IsImportant { get; }
 
 		public TaskToDo(string description, DateTime creationTime, DateTime deadline, TaskState state, bool isImportant)
 		{
 			Description = description;
 			Deadline = deadline;
-			State = state;
 			IsImportant = isImportant;
 			CreationTime = DateTime.Now;
 		}
